@@ -9,15 +9,30 @@
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
-    "dotenv": "~4.0.0",
-    "express": "~4.16.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.3",
     "hbs": "~4.0.1",
-    "mongoose": "~4.13.4",
+    "mongoose": "^4.13.14",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.11.0",
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "main": "app.js",
+  "bin": {
+    "library-project": "seeds.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ydnay/libraryProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ydnay/libraryProject/issues"
+  },
+  "homepage": "https://github.com/ydnay/libraryProject#readme",
+  "description": ""
 }
