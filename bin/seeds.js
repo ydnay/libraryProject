@@ -159,6 +159,6 @@ const saveBooks = findAuthors.then(findAuthors => {
 }).then(savedBooks => {
   Promise.all(savedBooks)
   .then(books => books.forEach(book => console.log(`created ${book.title}`)))
-  .then(mongoose.connection.close())
+  // .then(mongoose.connection.close())
   .catch(err => console.log("papu",err))
 });

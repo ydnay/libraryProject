@@ -6,7 +6,13 @@ const bookSchema = new Schema({
   title: String,
   description: String,
   author: [ { type : ObjectId, ref: 'Author' } ],
-  rating: Number
+  rating: Number,
+  reviews: [ 
+    {
+      user: String,
+      comments: String
+    } 
+  ]
 }, {
   timestamps: {
     createdAt: "createdAt",

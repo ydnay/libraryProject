@@ -22,13 +22,18 @@ router.get('/books', (req, res, next) => {
 
 router.get('/book/:id', (req, res, next) => {
   let bookId = req.params.id;
+  if (!/^[0-9a-fA-F]{24}$/.test(bookId)) { 
+    return res.status(404).render('not-found');
+  }
   Book.findOne({'_id': bookId})
+    .populate('author')
     .then(book => {
+      if (!book) {
+          return res.status(404).render('not-found');
+      }
       res.render("book-detail", { book })
     })
-    .catch(error => {
-      console.log(error)
-    })
+    .catch(next)
 });
 
 // const newBook = new Book({ title, author, description, rating});
@@ -80,6 +85,17 @@ router.post('/authors/add', (req, res, next) => {
   const newAuthor = new Author({ name, lastName, nationality, birthday, pictureUrl})
   newAuthor.save()
   .then((book) => {
+    res.redirect('/books')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+});
+
+router.post('/reviews/add', (req, res, next) => {
+  const { user, comments } = req.body;
+  Book.update({ _id: req.query.book_id }, { $push: { reviews: { user, comments }}})
+  .then(book => {
     res.redirect('/books')
   })
   .catch((error) => {
